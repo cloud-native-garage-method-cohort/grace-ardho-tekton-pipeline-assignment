@@ -1,7 +1,8 @@
+---
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
-metadata
-name linting-markdown-pipeline
+metadata:
+  - name: linting-markdown-pipeline
 spec:
   params:
     - name: source-repo
@@ -22,12 +23,12 @@ spec:
       taskRef:
         name: markdown-lint
         kind: Task
-      runAfter
+      runAfter:
         - clone-repository
       workspaces:
         - name: shared-workspace
           workspace: pipeline-shared-data          
- params:
+      params:
         - name: args
           value: ["."]
   workspaces:
