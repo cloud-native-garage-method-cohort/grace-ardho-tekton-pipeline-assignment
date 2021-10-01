@@ -18,7 +18,7 @@ spec:
         kind: ClusterTask
       workspaces:
         - name: output
-          workspace: pipeline-shared-data  
+          workspace: pipeline-shared-data
     - name: linting-markdown
       taskRef:
         name: markdown-lint
@@ -27,7 +27,7 @@ spec:
         - clone-repository
       workspaces:
         - name: shared-workspace
-          workspace: pipeline-shared-data          
+          workspace: pipeline-shared-data
       params:
         - name: args
           value: ["."]
