@@ -1,18 +1,20 @@
---- 
-doe: "a deer, a female deer"
-ray: "a drop of golden sun"
-pi: 3.14159
-xmas: true 
-calling-birds:
-  - huey
-  - dewey
-  - louie
-  - fred
-xmas-fifth-day:
-  calling-birds: four
-  french-hens: 3
-  golden-rings: 5
-  partridges:
-    count: 1
-    location: "a pear tree"
-  turtle-doves: two
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: linting-yaml-app-
+spec:
+  params:
+    - name: source-repo
+      value: https://github.com/cloud-native-garage-method-cohort/grace-ardho-tekton-pipeline-assignment
+  pipelineRef:
+    name: linting-yaml-pipeline
+  workspaces:
+    - name: pipeline-shared-data
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 1Gi
+          accessModes:
+            - ReadWriteOnce
